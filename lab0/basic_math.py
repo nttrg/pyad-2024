@@ -7,7 +7,21 @@ def matrix_multiplication(matrix_a, matrix_b):
     Задание 1. Функция для перемножения матриц с помощью списков и циклов.
     Вернуть нужно матрицу в формате списка.
     """
-    # put your code here
+  if len(matrix_a[0]) != len(matrix_b):
+    raise ValueError("Умножение выполнить невозможно, так как число столбцов матрицы A и число строк матрицы B не равны.")
+
+    m = len(matrix_a)      # кол-во строк в матрице A
+    n = len(matrix_a[0])   # кол-во столбцов в A = строк в B
+    p = len(matrix_b[0])   # кол-во столбцов в B
+
+    matrix_c = [[0 for _ in range(p)] for _ in range(m)]
+
+    for i in range(m):
+        for j in range(p):
+            for k in range(n):
+                matrix_c[i][j] += matrix_a[i][k] * matrix_b[k][j]
+
+    return matrix_c
     pass
 
 
