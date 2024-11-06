@@ -9,22 +9,23 @@ def matrix_multiplication(matrix_a, matrix_b):
     Задание 1. Функция для перемножения матриц с помощью списков и циклов.
     Вернуть нужно матрицу в формате списка.
     """
-  if len(matrix_a[0]) != len(matrix_b):
-    raise ValueError("Умножение выполнить невозможно, так как число столбцов матрицы A и число строк матрицы B не равны.")
 
-    m = len(matrix_a)      # кол-во строк в матрице A
-    n = len(matrix_a[0])   # кол-во столбцов в A = строк в B
-    p = len(matrix_b[0])   # кол-во столбцов в B
+    if len(matrix_a[0]) != len(matrix_b):
+        raise ValueError("Умножение выполнить невозможно, так как число столбцов матрицы A и число строк матрицы B не равны.")
 
-    matrix_c = [[0 for _ in range(p)] for _ in range(m)]
+        m = len(matrix_a)  # кол-во строк в матрице A
+        n = len(matrix_a[0])  # кол-во столбцов в A = строк в B
+        p = len(matrix_b[0])  # кол-во столбцов в B
 
-    for i in range(m):
-        for j in range(p):
-            for k in range(n):
-                matrix_c[i][j] += matrix_a[i][k] * matrix_b[k][j]
+        matrix_c = [[0 for _ in range(p)] for _ in range(m)]
 
-    return matrix_c
-    pass
+        for i in range(m):
+            for j in range(p):
+                for k in range(n):
+                    matrix_c[i][j] += matrix_a[i][k] * matrix_b[k][j]
+
+        return matrix_c
+        pass
 
 
 def functions(a_1, a_2):
@@ -41,9 +42,10 @@ def functions(a_1, a_2):
         return None
 
     def F(x):
-        return a1[0] * x**2 + a1[1] * x + a1[2]
+        return a1[0] * x ** 2 + a1[1] * x + a1[2]
+
     def P(x):
-        return a2[0] * x**2 + a2[1] * x + a2[2]
+        return a2[0] * x ** 2 + a2[1] * x + a2[2]
 
     # точки экстремума
     res_F = minimize_scalar(F)
@@ -56,7 +58,7 @@ def functions(a_1, a_2):
         extremum_points.append((int(extremum_F), int(F(extremum_F))))
     if not np.isnan(extremum_P):
         extremum_points.append((int(extremum_P), int(P(extremum_P))))
-    print( "точки экстремума функции: ", extremum_points)
+    print("точки экстремума функции: ", extremum_points)
 
     roots = np.roots([a1[0] - a2[0], a1[1] - a2[1], a1[2] - a2[2]])
     real_roots = [r for r in roots if np.isreal(r)]
@@ -78,8 +80,8 @@ def skew(x):
     n = len(x)
     mean = np.mean(x)
     std = np.std(x)
-    m3 = np.sum((x - mean)**3) / n
-    skewness = m3 / std**3
+    m3 = np.sum((x - mean) ** 3) / n
+    skewness = m3 / std ** 3
     return round(skewness, 2)
     pass
 
@@ -92,7 +94,7 @@ def kurtosis(x):
     n = len(x)
     mean = np.mean(x)
     std = np.std(x)
-    m4 = np.sum((x - mean)**4) / n
-    excess_kurtosis = m4 / std**4 - 3
+    m4 = np.sum((x - mean) ** 4) / n
+    excess_kurtosis = m4 / std ** 4 - 3
     return round(excess_kurtosis, 2)
     pass
